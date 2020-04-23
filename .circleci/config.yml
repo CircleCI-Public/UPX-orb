@@ -27,7 +27,16 @@ jobs:
     executor: orb-tools/ubuntu
     steps:
       - checkout
-    # - your-orb/your-orb-command
+      - upx/install
+      # We should be able to pack down the hello world binary a bit.
+      - upx/pack:
+          binary: sample/hello
+      - upx/list:
+          binary: sample/hello
+      - upx/test:
+          binary: sample/hello
+      - upx/unpack:
+          binary: sample/hello
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.
