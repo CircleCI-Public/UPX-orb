@@ -1,0 +1,10 @@
+description: >
+  Unpack a UPX packed binary.
+parameters:
+  binary:
+    type: string
+    description: "Binary file to unpack."
+steps:
+  - run:
+      name: Unpack << parameters.binary >>
+      command: upx -d << parameters.binary >>

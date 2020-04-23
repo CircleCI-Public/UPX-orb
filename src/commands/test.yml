@@ -1,0 +1,10 @@
+description: >
+  Test a UPX packed binary.
+parameters:
+  binary:
+    type: string
+    description: "Binary file to test."
+steps:
+  - run:
+      name: Test << parameters.binary >>
+      command: upx -t << parameters.binary >>

@@ -1,0 +1,31 @@
+description: >
+  Install UPX, with an optional version lock.
+parameters:
+  version:
+    type: string
+    default: "3.96"
+    description: "Version of UPX to use."
+  install_location:
+    type: string
+    default: "/home/circleci/upx/bin"
+    description: "Location to install UPX to, which will be added to PATH."
+steps:
+  - restore_cache:
+      keys:
+        - upx-cache-<< parameters.version >>
+        - upx-cache-
+  - run:
+      name: Install UPX
+      command: |
+        echo 'export PATH=$PATH:<< parameters.install_location >>' >> $BASH_ENV
+        if [ ! -f "<< parameters.install_location >>/upx" ]; then
+          wget https://github.com/upx/upx/releases/download/v<< parameters.version >>/upx-<< parameters.version >>-amd64_linux.tar.xz
+          tar xf upx-<< parameters.version >>-amd64_linux.tar.xz
+          mkdir -p << parameters.install_location >>
+          mv upx-<< parameters.version >>-amd64_linux/upx << parameters.install_location >>
+          chmod +x << parameters.install_location >>/upx
+        fi
+  - save_cache:
+      key: upx-cache-<< parameters.version >>
+      paths:
+        - << parameters.install_location >>

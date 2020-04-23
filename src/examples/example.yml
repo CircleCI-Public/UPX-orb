@@ -1,14 +1,14 @@
 description: >
-  Sample example description.
-  # What will this example document?
-  # Descriptions should be short, simple, and clear.
+  Install UPX and pack an executable (compiled_binary).
 usage:
   version: 2.1
   orbs:
-    foo: bar/foo@1.2.3
+    upx: gmem/upx@1.0.1
   jobs:
     build:
-      machine: true
+      docker:
+        - image: cimg/go:1.14
       steps:
-        - foo/hello:
-            username: "Anna"
+        - upx/install
+        - upx/pack:
+            binary: compiled_binary

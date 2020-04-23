@@ -1,0 +1,18 @@
+description: >
+  Run installed UPX.
+parameters:
+  brute:
+    type: boolean
+    default: false
+    description: "Whether to try all available compression methods & filters."
+  binary:
+    type: string
+    description: "Binary file to pack."
+  level:
+    type: integer
+    default: 7
+    description: "Packing/compression level, 1 being least, 9 being most. Defaults to 7."
+steps:
+  - run:
+      name: Pack << parameters.binary >>
+      command: upx <<# parameters.brute >> --brute <</ parameters.brute >> << parameters.binary >> -<< parameters.level >> --no-progress
