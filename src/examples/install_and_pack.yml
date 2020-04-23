@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    upx: gmem/upx@1.0.1
+    upx: circleci/upx@x.y
   jobs:
     build:
       docker:
