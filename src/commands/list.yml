@@ -1,0 +1,10 @@
+description: >
+  List some information about a packed file.
+parameters:
+  binary:
+    type: string
+    description: "Binary file to list."
+steps:
+  - run:
+      name: List << parameters.binary >>
+      command: upx -l << parameters.binary >>
