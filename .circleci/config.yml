@@ -16,7 +16,6 @@ parameters:
   dev-orb-version:
     type: string
     default: "dev:alpha"
-
 jobs:
   # This job is an example of an integration testing job.
   # This job should execute a command from your orb and verify
